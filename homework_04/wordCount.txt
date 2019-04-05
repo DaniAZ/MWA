@@ -1,0 +1,348 @@
+Student ID: ____109376__________________________________________
+Full Names: ____Daniel Zuemui_________________________________________
+
+
+
+Software Engineering
+(CS425)
+
+
+(November 2018)
+
+Professor: O. Kalu
+
+Final Integration Exercise
+
+
+1.	The exam duration is 2 hours.
+2.	The exam is computer-based; so you may use a computer for both the coding and theory parts.
+3.	Make sure to switch-off your cell-phones or simply turn the ringer off.
+4.	This exam is a copyrighted material and must not be copied or reproduced or transferred.
+5.	You are expected to use an IDE or any Code Editor tool of your choice to implement your solutions for the questions in the Coding part. Upon completion, put your project(s), (source code only) in a single zip file named FinalExam.zip, including your completed/finished exam paper (i.e. this document – in Microsoft Word or PDF format, only), and submit to Sakai.
+
+
+--------------------------------------------------------------------------------------------------------------------
+Type your answers to the theory questions in the following pages.
+--------------------------------------------------------------------------------------------------------------------
+ 
+(CS425 - SWE)
+(November 2018)
+Final Examination (70 points)
+
+Part I – Theory (True/False, Short answers, Multiple-choice questions): (16 points)
+
+1.	(2 points) Science of Consciousness: 
+Answer the following question; giving 2 sentences in support of your answer:
+State two (2) reasons why our twice daily practice of Transcendental Meditation can be considered to be an Agile technique for improving our brain performance?
+Answer:
+Transcendental Meditation means being fully present here and now – focused on who you are with and what you are doing without distraction. Agile is a set of principles for software development which enable solutions and ideas to evolve through effective collaboration of self-organizing cross-functional teams and crum is an agile framework for managing product development. A scrum master facilitates the scrum – he/she isn’t similar to a traditional team lead/manager. A scrum master effectively acts as a buffer between the team and any distractions that may impede their work so a scrum master is in constant collaboration with others. Always discussing new ideas and new ways of creating the best solution, always dealing with members of the team. A good scrum master cannot afford to be anything but mindful. If they were to shut down and communicate via email or discourage communication there wouldn’t be collaboration and an agile environment is then removed so Mediation, so Transcendental Meditation  improved brain performance.
+As agile is an iterative process so is Transcendental Meditation it is always mediating to get a better solution to wards your inner goals.
+
+2.	(2 points) Answer the following questions with True or False. 
+I.	(1 point) The technique of “mocking” an object or component or service implies creating a “fake” one to serve as a placeholder for the actual object or component or service, for the purpose of implementing Unit tests, in isolation. True or False?
+__________________True______________________
+
+II.	(1 point) In the RUP process model, during the Architecture Design activity, the class coded below will be globally visible to all other classes across the system. True or False?
+___________________False_____________________
+package edu.mum.cs.cs425.prodmgmt.global.publicc;
+
+class GlobalPublicUtils {
+	
+	public static final long MAX_INVENTORY_COUNT = 10000L;
+	
+	// TODO
+}
+
+3.	(12 points) Give short answers to the following questions.
+I.	(2 points) Explain the difference between the following 2 JPA annotations. (You may give examples to illustrate your answer).
+a.	 @Column(name="ProductNumber", nullable=false)                                private long productNumber;
+This means that in our database inside the table a column called ProductNumber is nullable which can not be null.
+ 
+As in the image the product is Not Null
+b.	 @NotNull                                                                                                      private long productNumber;
+This is means in our java when we are setting an input it can not be null. This is called validation on the user interface.
+
+
+
+II.	(2 points) With respect to relationship between two classes/entities, what do we mean by the term, Dependency. Give an example using code snippets and/or diagram.
+4.	class GreetingSender
+5.	{
+6.	        EmailSender _emailSender;
+7.	        void SendGreetings(EmailSender emailSender)
+8.	        {
+9.	            _emailSender = emailSender;
+10.	            //Send Greeting through Email
+11.	            _emailSender.SendEmail();
+12.	        }
+13.	}
+14.	
+15.	class EmailSender
+16.	{
+17.	        public void SendEmail()
+18.	        {
+19.	           //Send Email
+20.	        }
+21.	}
+In the above example, Greetings are being sent through Email. The GreetingSender object is using the SendEmail () method of EmailSender object to accomplish it’s task. Now, if any modification ((e.g. introduction of a parameter) is made to the SendEmail() method, the SendGreetings() method of GreetingSender class will break. Also, as per the implementation, we cannot send greetings by any other mode but only through Email. That way, my GreetingSender object’s functionality is dependent on EmailSender object’s functionality. This kind of relationship is termed as dependency.
+
+I.	(2 points) With respect to relationship between classes/entities, what do we mean by the term, Composition? And how does it differ from an Aggregation? Give examples to illustrate your answer.
+Composition is a restricted form of Aggregation in which two entities are highly dependent on each other.
+•	It represents part-of relationship.
+•	In composition, both the entities are dependent on each other.
+•	When there is a composition between two entities, the composed object cannot exist without the other entity.
+•	Lets take example of Library.
+// Java program to illustrate  
+// the concept of Composition 
+import java.io.*; 
+import java.util.*; 
+  
+// class book 
+class Book  
+{ 
+  
+    public String title; 
+    public String author; 
+      
+    Book(String title, String author) 
+    { 
+          
+        this.title = title; 
+        this.author = author; 
+    } 
+} 
+  
+// Libary class contains  
+// list of books. 
+class Library  
+{ 
+  
+    // reference to refer to list of books. 
+    private final List<Book> books; 
+      
+    Library (List<Book> books) 
+    { 
+        this.books = books;  
+    } 
+      
+    public List<Book> getTotalBooksInLibrary(){ 
+          
+       return books;   
+    } 
+      
+} 
+  
+// main method 
+class GFG  
+{ 
+    public static void main (String[] args)  
+    { 
+          
+        // Creating the Objects of Book class. 
+        Book b1 = new Book("EffectiveJ Java", "Joshua Bloch"); 
+        Book b2 = new Book("Thinking in Java", "Bruce Eckel"); 
+        Book b3 = new Book("Java: The Complete Reference", "Herbert Schildt"); 
+          
+        // Creating the list which contains the  
+        // no. of books. 
+        List<Book> books = new ArrayList<Book>(); 
+        books.add(b1); 
+        books.add(b2); 
+        books.add(b3); 
+          
+        Library library = new Library(books); 
+          
+        List<Book> bks = library.getTotalBooksInLibrary(); 
+        for(Book bk : bks){ 
+              
+            System.out.println("Title : " + bk.title + " and " 
+            +" Author : " + bk.author); 
+        } 
+    } 
+} 
+Output
+1.	Title : EffectiveJ Java and  Author : Joshua Bloch
+2.	Title : Thinking in Java and  Author : Bruce Eckel
+3.	Title : Java: The Complete Reference and  Author : Herbert Schildt
+In above example a library can have no. of books on same or different subjects. So, If Library gets destroyed then All books within that particular library will be destroyed. i.e. book can not exist without library. That’s why it is composition
+Aggregation vs Composition
+1.	Dependency: Aggregation implies a relationship where the child can exist independently of the parent. For example, Bank and Employee, delete the Bank and the Employee still exist. whereas Composition implies a relationship where the child cannot exist independent of the parent. Example: Human and heart, heart don’t exist separate to a Human
+2.	Type of Relationship: Aggregation relation is “has-a” and composition is “part-of”relation.
+3.	Type of association: Composition is a strong Association whereas Aggregation is a weak Association
+
+
+// Java program to illustrate the 
+// difference between Aggregation 
+// Composition. 
+  
+import java.io.*; 
+  
+// Engine class which will  
+// be used by car. so 'Car' 
+// class will have a field  
+// of Engine type. 
+class Engine  
+{ 
+    // starting an engine. 
+    public void work() 
+    { 
+          
+        System.out.println("Engine of car has been started "); 
+          
+    } 
+      
+} 
+  
+// Engine class 
+final class Car  
+{ 
+      
+    // For a car to move,  
+    // it need to have a engine. 
+    private final Engine engine; // Composition 
+    //private Engine engine;     // Aggregation 
+      
+    Car(Engine engine) 
+    { 
+        this.engine = engine; 
+    } 
+      
+    // car start moving by starting engine 
+    public void move()  
+    { 
+          
+        //if(engine != null) 
+        { 
+            engine.work(); 
+            System.out.println("Car is moving "); 
+        } 
+    } 
+} 
+  
+class GFG  
+{ 
+    public static void main (String[] args)  
+    { 
+          
+        // making an engine by creating  
+        // an instance of Engine class. 
+        Engine engine = new Engine(); 
+          
+        // Making a car with engine. 
+        // so we are passing a engine  
+        // instance as an argument while 
+        // creating instace of Car. 
+        Car car = new Car(engine); 
+        car.move(); 
+          
+    } 
+}
+Output:
+
+1.	Engine of car has been started 
+2.	Car is moving
+
+
+II.	(6 points) For the MUMScheduling project, given below is Use-case specification for when a faculty who owns a Specialization track, reviews pending track enrollment requests.
+Use-case: Faculty Specialization Track Owner Reviews Pending Track Enrollment Requests.
+Brief Description:
+
+This use case allows a faculty owner of a specialization track to review pending specialization track requests from students and to mark them as approved or rejected.
+
+Actors: Faculty
+
+Preconditions: 
+ Faculty is logged in and at the view specialization track page.
+
+
+
+
+
+Flow of Events:
+Basic Flow
+	 
+
+Post-Conditions: 
+ For the success basic flow the track enrollment request is saved to the DB with updates.
+
+Business Rules:
+
+1.	Only the faculty owner of the specialization track can review track enrollment requests. 
+2.	The status reason entry is text to explain the reason for accepting or rejecting an enrollment request. It must be non-blank when setting the status to accepted or rejected. 
+3.	The status of track enrollment requests can be pending, accepted, or rejected. 
+
+Using ATDD, write a User Story for the above use-case, representing the basic success scenario. In your user story, indicate (in brackets, at the end of each statement) what section of the RUP use-case description, as given above, corresponds to each of your User story statement. 
+Answer: 
+
+?	As a faculty (RUP Actor) 
+?	I want to review pending track enrollment requests (RUP brief description) 
+?	Given I am at the specialization track page (RUP precondition)
+?	So that I can mark the as either accepted or rejected and they are saved in the DB (RUP post condition) 
+?	When I select review pending enrollment requests for a track (RUP user input) 
+Then I see the pending enrollment requests for the track that I am the owner of (RUP system output
+ 
+Part II – Software Engineering Problem-solving, Coding skills: (54 points)
+
+Note: For these questions, for each of your solution, you are expected to take screenshot(s) of your result(s), save it into a .png or .jpg image file and include these in the FinalExam.zip file you submit.
+
+1.	(12 points) Implementing Unit Testing using the JUnit framework: 
+Implement code for a component named, MyArrayUtils, as a Java command-line (console) application. In your component (class), implement a method named, hasMultipleMaximum(…), which takes as input, any array of integers and it returns true, if the maximum integer value in the array, occurs more than once, otherwise it returns false. For example, when given an input, a_in = [-6, 2, 5, 6, -6, 5, 6], your hasMultipleMaximum method should return the value, true. And when given an input, a_in = [-6, 2, 5, -6, 5, 6], the method should return the value, false. 
+Also, when hasMultipleMaximum (...) is called and the input argument passed is null or an empty array, it should return, false. 
+
+Using JUnit, implement unit tests for your MyArrayUtils component and its hasMultipleMaximum () method; covering the following 3 test-cases:
+
+1. When the input is a legit integer array, such as [-6, 2, 5, 6, -6, 5, 6] or [-6, 2, 5, -6, 5, 6].
+
+2. When the input is a null.
+
+3. When the input is an empty array.
+
+Create a JUnit TestSuite containing your 3 test-cases defined above. And execute your TestSuite and take a screenshot of your result, as displayed by your IDE.
+ 
+
+2.	(42 points) Implementing an Enterprise Web Application 
+
+A local SuperStore, named WallyMarty, has hired you to design and develop a Customer Relationship Management (CRM) system for them, which they will be using to collect, maintain and manage data about their customers. They want you to implement a basic web application for this purpose. Especially important to the store is, their select group of PrimeCustomers, who they offer a special 10% discount on every purchase that customers belonging in this group, make at the store.
+
+A PrimeCustomer is a customer who is of age, 40 or older.
+
+Here are the attributes for the Customer entity:
+Customer: customerId:long, customerNumber:string, name:string, contactPhoneNumber:string, dateOfBirth:date
+For this question, you are expected to do the following:
+
+1. Using the set of tools, technologies and frameworks which you have learnt about in this CS425 course, including Spring Boot, Spring Web MVC, Spring Data JPA, etc., (or some other Enterprise Web application development platform/tool(s) that you prefer),  implement a working web application for WallyMarty SuperStore. You may use any database of your choice.
+
+You are expected to implement only the following use-cases:
+
+1.	Display the application’s Homepage.
+2.	Display list of Customers (Allows the store manager to view a list of all the Customers registered in the system). The store requires this list to be displayed sorted in ascending order of the Customers’ names (see sample screen below).
+3.	Register a new Customer (Allows the store manager to add a new Customer into the system).
+4.	Display list of PrimeCustomers (Allows the store manager to view a list of all the PrimeCustomers in the system). The store requires this list to be displayed sorted in ascending order of the Customers’ dates of birth (see sample screen below).
+
+Shown below are sample User Interfaces for the use-cases. Note: Your own UI design does NOT necessarily have to look exactly like these samples. But your UIs should contain all the necessary data and data fields, as shown.
+
+Homepage:
+ 
+
+ 
+
+List of all Registered Customers:
+ 
+
+Register a new Customer:
+ 
+
+
+
+
+
+
+
+
+
+
+List of Prime Customers:
+ 
+
+
+
+//-- The End --//
