@@ -10,7 +10,7 @@ server.on('request',(req,res)=>{
     const pathToFile=path.join(__dirname,'wordCount.txt');
      childProcess.send(pathToFile);
 
-     res.writeHead(200, { "Content-Type": "text/plain" });
+    // res.writeHead(200, { "Content-Type": "text/plain" });
      childProcess.on('message', data => {
          res.write(data);
          res.end();
