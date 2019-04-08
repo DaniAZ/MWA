@@ -1,4 +1,4 @@
-const { Resolver} = require('dns').promises;
+const { Resolver } = require('dns').promises;
 const dns = require('dns');
 
 dns.lookup('www.mum.edu', (err, address, family) => {

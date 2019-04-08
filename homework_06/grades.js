@@ -11,17 +11,14 @@ router.post('/',(req,res)=>{
     res.json(grades);   
 })
 router.delete('/:id',(req,res)=>{
-     const uid=req.params.id;
-    let x='';
-      for(let i=0;i<grades;i++){
-          if(grades[i].id===uid){
-               x=i;
-               break;
-          }
+    const grade=grades.find(g=>g.id===parseInt(req.params.id))
+    const index=grades.indexOf(grade)
+      if(index>-1){
+      grades.splice(index,1);
       }
-      if(uid>-1){
-      grades.splice(x,1);
+      else{
+          res.status(404).send('There is no Grade associated with this id');
       }
-     res.send(grades);
+     res.send(grade);
 });
 module.exports=router;
