@@ -10,5 +10,8 @@ const path = require('path');
 process.on('message', msg => {
    //  readFileAsync(msg);
    const readable =fs.createReadStream(msg,{encoding:'utf8'});
-     process.send(readable);
+   readable.on('data',function(chunk){
+        process.send(chunk);
+   })
+     
 });
