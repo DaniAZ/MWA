@@ -1,0 +1,196 @@
+1.
+
+mongoimport --host 
+Cluster0-shard-0/cluster0-shard-00-00-ctv9y.mongodb.net:27017,cluster0-shard-00-01-ctv9y.mongodb.net:27017,cluster0-shard-00-02-ctv9y.mongodb.net:27017 --ssl
+ --username <username> --password <password> --authenticationDatabase admin --db homework07 --collection resturants --type json --file restaurants.json
+
+ 2. 
+   const cursor =collection.find({}).project({restaurant_id:1,name:1,district:1,cuisine:1})
+    cursor.each(function(err,doc){
+       console.log(doc);
+   })
+
+3.
+   const cursor =collection.find({}).project({_id:0,restaurant_id:1,name:1,district:1,cuisine:1})
+    cursor.each(function(err,doc){
+       console.log(doc);
+   })
+
+4.
+   const cursor =collection.find({}).project({_id:0,restaurant_id:1,name:1,district:1,cuisine:1,'address.zipcode':1})
+    cursor.each(function(err,doc){
+       console.log(doc);
+   })
+
+5.
+ const cursor =collection.find({district:{$eq:"Bronx"}})
+   cursor.each(function(err,doc){
+      console.log(doc);
+  })
+6.
+  const cursor =collection.find({district:{$eq:"Bronx"}})
+  cursor.limit(5);
+   cursor.each(function(err,doc){
+      console.log(doc);
+  })
+7.
+const cursor =collection.find({district:{$eq:"Bronx"}})
+  cursor.skip(5);
+  cursor.limit(5);
+   cursor.each(function(err,doc){
+      console.log(doc);
+  })
+8.
+  const cursor =collection.find({"address.coord":{$elemMatch:{$lt:-95.754168}}})
+   cursor.each(function(err,doc){
+      console.log(doc);
+  })
+9
+    const query = {
+        "cuisine": { $ne: 'American ' },
+        "grades.score": {$gt: 70},
+        "address.coord.0":{ $lt:-65.754168}
+    }
+     const cursor = collection.find(query)
+10
+    const query = {
+        "name": { $regex:'^Wil' },
+         }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+11.
+const query = {
+        "name":{$regex:'ces$'}
+      }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+12.
+const query = {
+        "name": { $regex:'(Reg)' },
+     
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+
+13.
+const query = {
+        "district": {$eq:"Bronx"},
+        "cuisine":{ $in:["Chinese","American "]}
+     
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+
+14
+      const query = {
+        "district": {$in:["Bronx","Brooklyn","Queens","Staten Island"]},
+             
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+15.
+       const query = {
+        "district": {$nin:["Bronx","Brooklyn","Queens","Staten Island"]},
+          
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+16
+    onst query = {
+        "grades.score": {$lt:10},
+             
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1,
+        
+    }
+    const cursor = collection.find(query).project(proj)
+17.
+const query = {
+         "address.coord.1": {$gt:42 , $lt:52}
+             
+    }
+    const proj={
+        restaurant_id:1,
+        name:1,
+        address:1,  
+    }
+    const cursor = collection.find(query).project(proj)
+
+    18.
+    
+     const proj={
+        restaurant_id:1,
+        name:1,
+        district:1,
+        cuisine:1
+    }
+    const cursor = collection.find({}).project(proj)
+    cursor.sort({name:{$regex:'\s'}},1)
+    cursor.limit(3);
+    cursor.each(function (err, doc) {
+        console.log(doc);
+    })
+19
+cursor.sort({name:{$regex:'\s'}},-1)
+20
+ cursor.sort({name:1,district:-1});
+ 21
+ const query = {
+         "address.street": {$exists:false}
+             
+     }
+22
+ // both queries will produce the same resutl double = 1, string = 2 .....
+    db.restaurants.find({'address.coord': {$type: 'double'}})
+    db.restaurants.find({'address.coord': {$type: 1}})
+
+23
+  const query = {
+         "name": {$regex:'^Mad'}
+             
+     }
+    const proj={
+        name:1,
+        district:1,
+        "address.coord":1,
+        cuisine:1
+    }
+    const cursor = collection.find(query).project(proj)
+
+
+
+
